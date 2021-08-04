@@ -1,0 +1,44 @@
+$fa-font-path: "node_modules/@fortawesome/fontawesome-free/webfonts" !default;
+
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+
+@import "~bootstrap/scss/bootstrap";
+
+#app > div > .navbar {
+  margin-bottom: 25px;
+}
+#app > div > .container {
+  max-width: 800px;
+}
+
+form .table {
+  margin-bottom: 0px;
+}
+
+@include media-breakpoint-down(sm) {
+  .table-sm-sm {
+    th,
+    td {
+      padding: $table-cell-padding-y-sm $table-cell-padding-x-sm;
+    }
+    .form-control {
+      padding: 0.175rem 0.25rem;
+    }
+  }
+}
+
+.nav-tabs .nav-link {
+  color: $gray-700;
+  font-weight: $font-weight-light;
+
+  &.active {
+    font-weight: $font-weight-normal;
+  }
+}
+
+.accordion .btn-link {
+  color: $gray-700;
+  text-decoration: none;
+  font-weight: $font-weight-normal;
+}
