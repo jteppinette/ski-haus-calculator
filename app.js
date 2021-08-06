@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Dinero from 'dinero.js'
 import { dollarsToCents } from './utils.js'
+import { getURLState, setURLState, defaultState } from './state.js'
 import NumberFormat from 'react-number-format'
 
 import {
+  Alert,
   Badge,
   Button,
   Card,
@@ -27,47 +29,40 @@ import {
 } from 'reactstrap'
 
 class App extends Component {
-  state = {
-    monthlyRent: 6000,
-    tiers: [
-      {
-        monthlyRent: 200,
-        residentsCount: 5,
-        description:
-          'Each resident is guaranteed one weekend bed spots per month.'
-      },
-      {
-        monthlyRent: 300,
-        residentsCount: 15,
-        description:
-          'Each resident is guaranteed two weekend bed spots per month.'
-      },
-      {
-        monthlyRent: 400,
-        residentsCount: 5,
-        description:
-          'Each resident is guaranteed three weekend bed spots per month.'
-      }
-    ],
-    modal: false
+  constructor (props) {
+    super(props)
+
+    const urlState = getURLState()
+
+    if (urlState) {
+      this.state = urlState
+    } else {
+      this.state = defaultState
+      setURLState(defaultState)
+    }
   }
 
   toggleModal = () => {
     this.setState({ modal: !this.state.modal })
   }
 
+  updateMonthlyRent = monthlyRent => {
+    this.setState({ monthlyRent }, () => setURLState(this.state))
+  }
   addTier = tier => {
-    this.setState({ tiers: [...this.state.tiers, tier] })
+    this.setState({ tiers: [...this.state.tiers, tier] }, () =>
+      setURLState(this.state)
+    )
   }
   updateTier = (index, tier) => {
     const tiers = this.state.tiers
     tiers[index] = tier
-    this.setState({ tiers })
+    this.setState({ tiers }, () => setURLState(this.state))
   }
   removeTier = index => {
     const tiers = this.state.tiers
     tiers.splice(index, 1)
-    this.setState({ tiers })
+    this.setState({ tiers }, () => setURLState(this.state))
   }
 
   render () {
@@ -77,13 +72,27 @@ class App extends Component {
           <NavbarBrand className='mx-auto'>Ski Haus Calculator</NavbarBrand>
         </Navbar>
         <Container>
+          <Alert color='light' fade={false} className='pl-0 pr-0'>
+            <Row>
+              <Col xs={9}>
+                All state is stored in the search bar to support sharing by URL.
+                Press the <i>Reset</i> link to the right to restore the default
+                state.
+              </Col>
+              <Col xs={3}>
+                <a href='/' className='alert-link float-right'>
+                  Reset
+                </a>
+              </Col>
+            </Row>
+          </Alert>
           <FormGroup>
             <Label htmlFor='monthlyRent'>Monthly Rent</Label>
             <NumberFormat
               name='monthlyRent'
               value={this.state.monthlyRent}
               onValueChange={({ value }) => {
-                this.setState({ monthlyRent: parseFloat(value) })
+                this.updateMonthlyRent(parseFloat(value))
               }}
               decimalScale={2}
               thousandSeparator={true}
@@ -353,7 +362,7 @@ class Summary extends Component {
       0
     )
     const monthlyRent = Dinero({
-      amount: dollarsToCents(this.props.monthlyRent)
+      amount: dollarsToCents(this.props.monthlyRent || 0)
     })
     const monthlyIncome = this.props.tiers.reduce(
       (sum, tier) =>
