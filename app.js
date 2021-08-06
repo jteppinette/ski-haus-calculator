@@ -73,18 +73,12 @@ class App extends Component {
         </Navbar>
         <Container>
           <Alert color='light' fade={false} className='pl-0 pr-0'>
-            <Row>
-              <Col xs={9}>
-                All state is stored in the search bar to support sharing by URL.
-                Press the <i>Reset</i> link to the right to restore the default
-                state.
-              </Col>
-              <Col xs={3}>
-                <a href='/' className='alert-link float-right'>
-                  Reset
-                </a>
-              </Col>
-            </Row>
+            All state is stored in the search bar to support sharing by URL.
+            Click
+            <a href='#' className='alert-link pl-1 pr-1'>
+              reset
+            </a>
+            to restore the default state.
           </Alert>
           <FormGroup>
             <Label htmlFor='monthlyRent'>Monthly Rent</Label>
