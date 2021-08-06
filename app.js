@@ -173,7 +173,7 @@ class Tier extends Component {
             <i onClick={this.toggleModal} className='fas fa-edit ml-1'></i>
             <i
               onClick={this.props.remove}
-              className='fas fa-trash-alt ml-1'
+              className='fas fa-trash-alt ml-2'
             ></i>
           </div>
         </div>
