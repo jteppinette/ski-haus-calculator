@@ -90,6 +90,7 @@ class App extends Component {
             <Label htmlFor='monthlyRent'>Monthly Rent</Label>
             <NumberFormat
               name='monthlyRent'
+              type='tel'
               value={this.state.monthlyRent}
               onValueChange={({ floatValue }) => {
                 this.updateMonthlyRent(floatValue)
@@ -222,6 +223,7 @@ class UpdateTierModal extends Component {
               <Label htmlFor='monthlyRent'>Monthly Rent</Label>
               <NumberFormat
                 name='monthlyRent'
+                type='tel'
                 value={this.state.monthlyRent}
                 onValueChange={({ floatValue }) =>
                   this.setState({ monthlyRent: floatValue })
@@ -310,6 +312,7 @@ class AddTierModal extends Component {
               <Label htmlFor='monthlyRent'>Monthly Rent</Label>
               <NumberFormat
                 name='monthlyRent'
+                type='tel'
                 value={this.state.monthlyRent}
                 onValueChange={({ floatValue }) =>
                   this.setState({ monthlyRent: floatValue })
