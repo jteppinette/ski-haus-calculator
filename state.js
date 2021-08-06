@@ -2,10 +2,10 @@ export const defaultState = {
   monthlyRent: 6000,
   tiers: [
     {
-      monthlyRent: 200,
+      monthlyRent: 400,
       residentsCount: 5,
       description:
-        'Each resident is guaranteed one weekend bed spots per month.'
+        'Each resident is guaranteed three weekend bed spots per month.'
     },
     {
       monthlyRent: 300,
@@ -14,10 +14,10 @@ export const defaultState = {
         'Each resident is guaranteed two weekend bed spots per month.'
     },
     {
-      monthlyRent: 400,
+      monthlyRent: 200,
       residentsCount: 5,
       description:
-        'Each resident is guaranteed three weekend bed spots per month.'
+        'Each resident is guaranteed one weekend bed spots per month.'
     }
   ],
   modal: false

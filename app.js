@@ -55,13 +55,14 @@ class App extends Component {
     this.setState({ monthlyRent }, () => setURLState(this.state))
   }
   addTier = tier => {
-    this.setState({ tiers: [...this.state.tiers, tier] }, () =>
-      setURLState(this.state)
-    )
+    const tiers = [...this.state.tiers, tier]
+    tiers.sort((a, b) => b.monthlyRent - a.monthlyRent)
+    this.setState({ tiers }, () => setURLState(this.state))
   }
   updateTier = (index, tier) => {
     const tiers = this.state.tiers
     tiers[index] = tier
+    tiers.sort((a, b) => b.monthlyRent - a.monthlyRent)
     this.setState({ tiers }, () => setURLState(this.state))
   }
   removeTier = index => {
