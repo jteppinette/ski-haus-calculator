@@ -307,7 +307,7 @@ class AddTierModal extends Component {
                 name='monthlyRent'
                 value={this.state.monthlyRent}
                 onValueChange={({ floatValue }) =>
-                  this.setState({ monthlyRent: value })
+                  this.setState({ monthlyRent: floatValue })
                 }
                 decimalScale={2}
                 thousandSeparator={true}
