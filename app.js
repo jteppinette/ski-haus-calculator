@@ -91,8 +91,8 @@ class App extends Component {
             <NumberFormat
               name='monthlyRent'
               value={this.state.monthlyRent}
-              onValueChange={({ value }) => {
-                this.updateMonthlyRent(parseFloat(value))
+              onValueChange={({ floatValue }) => {
+                this.updateMonthlyRent(floatValue)
               }}
               decimalScale={2}
               thousandSeparator={true}
@@ -223,8 +223,8 @@ class UpdateTierModal extends Component {
               <NumberFormat
                 name='monthlyRent'
                 value={this.state.monthlyRent}
-                onValueChange={({ value }) =>
-                  this.setState({ monthlyRent: parseFloat(value) })
+                onValueChange={({ floatValue }) =>
+                  this.setState({ monthlyRent: floatValue })
                 }
                 decimalScale={2}
                 thousandSeparator={true}
@@ -238,8 +238,8 @@ class UpdateTierModal extends Component {
               <NumberFormat
                 name='residentsCount'
                 value={this.state.residentsCount}
-                onValueChange={({ value }) => {
-                  this.setState({ residentsCount: parseInt(value) })
+                onValueChange={({ floatValue }) => {
+                  this.setState({ residentsCount: floatValue })
                 }}
                 decimalScale={0}
                 allowNegative={false}
@@ -306,8 +306,8 @@ class AddTierModal extends Component {
               <NumberFormat
                 name='monthlyRent'
                 value={this.state.monthlyRent}
-                onValueChange={({ value }) =>
-                  this.setState({ monthlyRent: parseFloat(value) })
+                onValueChange={({ floatValue }) =>
+                  this.setState({ monthlyRent: value })
                 }
                 decimalScale={2}
                 thousandSeparator={true}
@@ -321,8 +321,8 @@ class AddTierModal extends Component {
               <NumberFormat
                 name='residentsCount'
                 value={this.state.residentsCount}
-                onValueChange={({ value }) =>
-                  this.setState({ residentsCount: parseInt(value) })
+                onValueChange={({ floatValue }) =>
+                  this.setState({ residentsCount: floatValue })
                 }
                 decimalScale={0}
                 allowNegative={false}
