@@ -263,7 +263,11 @@ class UpdateTierModal extends Component {
           <Button color='light' onClick={this.props.toggle}>
             Cancel
           </Button>
-          <Button color='dark' onClick={this.update}>
+          <Button
+            color='dark'
+            onClick={this.update}
+            disabled={!this.state.monthlyRent || !this.state.residentsCount}
+          >
             Update Tier
           </Button>{' '}
         </ModalFooter>
@@ -346,7 +350,11 @@ class AddTierModal extends Component {
           <Button color='light' onClick={this.cancel}>
             Cancel
           </Button>
-          <Button color='dark' onClick={this.add}>
+          <Button
+            color='dark'
+            onClick={this.add}
+            disabled={!this.state.monthlyRent || !this.state.residentsCount}
+          >
             Add Tier
           </Button>{' '}
         </ModalFooter>
