@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Dinero from 'dinero.js'
 import { dollarsToCents } from './utils.js'
-import { getURLState, setURLState, defaultState } from './state.js'
+import {
+  getURLState,
+  setURLState,
+  clearURLState,
+  defaultState
+} from './state.js'
 import NumberFormat from 'react-number-format'
 
 import {
@@ -38,7 +43,7 @@ class App extends Component {
       this.state = urlState
     } else {
       this.state = defaultState
-      setURLState(defaultState)
+      clearURLState()
     }
   }
 
@@ -75,7 +80,7 @@ class App extends Component {
           <Alert color='light' fade={false} className='pl-0 pr-0'>
             All state is stored in the search bar to support sharing by URL.
             Click
-            <a href='#' className='alert-link pl-1 pr-1'>
+            <a href='/' className='alert-link pl-1 pr-1'>
               reset
             </a>
             to restore the default state.

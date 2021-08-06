@@ -91,3 +91,7 @@ export function setURLState (state) {
 
   window.history.replaceState({}, '', `${location.pathname}?${params}`)
 }
+
+export function clearURLState () {
+  window.history.replaceState({}, '', location.pathname)
+}
