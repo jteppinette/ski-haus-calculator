@@ -237,6 +237,7 @@ class UpdateTierModal extends Component {
               <Label htmlFor='residentsCount'>Number of Residents</Label>
               <NumberFormat
                 name='residentsCount'
+                type='tel'
                 value={this.state.residentsCount}
                 onValueChange={({ floatValue }) => {
                   this.setState({ residentsCount: floatValue })
@@ -324,6 +325,7 @@ class AddTierModal extends Component {
               <Label htmlFor='residentsCount'>Number of Residents</Label>
               <NumberFormat
                 name='residentsCount'
+                type='tel'
                 value={this.state.residentsCount}
                 onValueChange={({ floatValue }) =>
                   this.setState({ residentsCount: floatValue })
