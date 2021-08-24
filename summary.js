@@ -22,16 +22,22 @@ function Summary (props) {
     Dinero()
   )
   const monthlyDelta = monthlyIncome.subtract(monthlyRent)
+  const requiredBedSpots = Math.ceil(
+    props.tiers.reduce(
+      (sum, tier) => (sum += tier.reservedCount * tier.residentsCount),
+      0
+    ) / 4
+  )
 
   return (
     <Row className='text-center'>
-      <Col xs={4} className='mb-3'>
+      <Col xs={3} className='mb-3'>
         <strong>Monthly Income</strong>
         <br />
         {monthlyIncome.toFormat()}
       </Col>
       <Col
-        xs={4}
+        xs={3}
         className={`mb-3 ${
           monthlyDelta.isNegative() ? 'text-danger' : 'text-success'
         }`}
@@ -40,10 +46,15 @@ function Summary (props) {
         <br />
         {monthlyDelta.toFormat()}
       </Col>
-      <Col xs={4}>
-        <strong>Number of Residents</strong>
+      <Col xs={3}>
+        <strong>Residents</strong>
         <br />
         {residentsCount}
+      </Col>
+      <Col xs={3}>
+        <strong>Required Bed Spots</strong>
+        <br />
+        {requiredBedSpots}
       </Col>
     </Row>
   )
