@@ -1,16 +1,6 @@
 import React, { Component } from 'react'
-import Dinero from 'dinero.js'
-import { dollarsToCents } from './utils.js'
-import {
-  getURLState,
-  setURLState,
-  clearURLState,
-  defaultState
-} from './state.js'
 import NumberFormat from 'react-number-format'
-
 import pluralize from 'pluralize'
-
 import {
   Alert,
   Badge,
@@ -18,7 +8,6 @@ import {
   Card,
   CardFooter,
   CardHeader,
-  Col,
   Container,
   Form,
   FormGroup,
@@ -31,9 +20,16 @@ import {
   ModalFooter,
   ModalHeader,
   Navbar,
-  NavbarBrand,
-  Row
+  NavbarBrand
 } from 'reactstrap'
+
+import {
+  getURLState,
+  setURLState,
+  clearURLState,
+  defaultState
+} from './state.js'
+import Summary from './summary.js'
 
 class App extends Component {
   constructor (props) {
@@ -394,53 +390,6 @@ class AddTierModal extends Component {
           </Button>{' '}
         </ModalFooter>
       </Modal>
-    )
-  }
-}
-
-class Summary extends Component {
-  render () {
-    const residentsCount = this.props.tiers.reduce(
-      (sum, tier) => sum + tier.residentsCount,
-      0
-    )
-    const monthlyRent = Dinero({
-      amount: dollarsToCents(this.props.monthlyRent || 0)
-    })
-    const monthlyIncome = this.props.tiers.reduce(
-      (sum, tier) =>
-        sum.add(
-          Dinero({ amount: dollarsToCents(tier.monthlyRent) }).multiply(
-            tier.residentsCount
-          )
-        ),
-      Dinero()
-    )
-    const monthlyDelta = monthlyIncome.subtract(monthlyRent)
-
-    return (
-      <Row className='text-center'>
-        <Col xs={4} className='mb-3'>
-          <strong>Monthly Income</strong>
-          <br />
-          {monthlyIncome.toFormat()}
-        </Col>
-        <Col
-          xs={4}
-          className={`mb-3 ${
-            monthlyDelta.isNegative() ? 'text-danger' : 'text-success'
-          }`}
-        >
-          <strong>Monthly Delta</strong>
-          <br />
-          {monthlyDelta.toFormat()}
-        </Col>
-        <Col xs={4}>
-          <strong>Number of Residents</strong>
-          <br />
-          {residentsCount}
-        </Col>
-      </Row>
     )
   }
 }
