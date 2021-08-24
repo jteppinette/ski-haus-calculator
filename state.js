@@ -1,5 +1,5 @@
 export const defaultState = {
-  monthlyRent: 6000,
+  monthlyRent: 8000,
   bedSpots: 11,
   tiers: [
     {
@@ -8,12 +8,12 @@ export const defaultState = {
       reservedCount: 3
     },
     {
-      monthlyRent: 300,
-      residentsCount: 15,
+      monthlyRent: 320,
+      residentsCount: 18,
       reservedCount: 2
     },
     {
-      monthlyRent: 200,
+      monthlyRent: 240,
       residentsCount: 5,
       reservedCount: 1
     }
