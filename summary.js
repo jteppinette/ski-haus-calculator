@@ -31,27 +31,27 @@ function Summary (props) {
 
   return (
     <Row className='text-center'>
-      <Col xs={3} className='mb-3'>
+      <Col xs={4} className='mb-3'>
         <strong>Monthly Income</strong>
         <br />
-        {monthlyIncome.toFormat()}
+        {monthlyIncome.toFormat()}{' '}
+        {monthlyDelta.isZero() ? null : (
+          <span
+            className={`mb-3 ${
+              monthlyDelta.isNegative() ? 'text-danger' : 'text-success'
+            }`}
+          >
+            ({monthlyDelta.isPositive() ? '+' : null}
+            {monthlyDelta.toFormat()})
+          </span>
+        )}
       </Col>
-      <Col
-        xs={3}
-        className={`mb-3 ${
-          monthlyDelta.isNegative() ? 'text-danger' : 'text-success'
-        }`}
-      >
-        <strong>Monthly Delta</strong>
-        <br />
-        {monthlyDelta.toFormat()}
-      </Col>
-      <Col xs={3}>
+      <Col xs={4}>
         <strong>Residents</strong>
         <br />
         {residentsCount}
       </Col>
-      <Col xs={3}>
+      <Col xs={4}>
         <strong>Required Bed Spots</strong>
         <br />
         {requiredBedSpots}
