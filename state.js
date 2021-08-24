@@ -4,20 +4,17 @@ export const defaultState = {
     {
       monthlyRent: 400,
       residentsCount: 5,
-      description:
-        'Each resident is guaranteed three weekend bed spots per month.'
+      reservedCount: 3
     },
     {
       monthlyRent: 300,
       residentsCount: 15,
-      description:
-        'Each resident is guaranteed two weekend bed spots per month.'
+      reservedCount: 2
     },
     {
       monthlyRent: 200,
       residentsCount: 5,
-      description:
-        'Each resident is guaranteed one weekend bed spots per month.'
+      reservedCount: 1
     }
   ],
   modal: false
@@ -51,8 +48,8 @@ export function getURLState () {
     const tierResidentsCount = params.has(`${i}residentsCount`)
       ? parseInt(params.get(`${i}residentsCount`))
       : null
-    const tierDescription = params.has(`${i}description`)
-      ? params.get(`${i}description`)
+    const tierReservedCount = params.has(`${i}reservedCount`)
+      ? parseInt(params.get(`${i}reservedCount`))
       : null
 
     if (
@@ -60,7 +57,8 @@ export function getURLState () {
       isNaN(tierMonthlyRent) ||
       tierResidentsCount === null ||
       isNaN(tierResidentsCount) ||
-      tierDescription === null
+      tierReservedCount === null ||
+      isNaN(tierReservedCount)
     ) {
       return
     }
@@ -68,7 +66,7 @@ export function getURLState () {
     tiers.push({
       monthlyRent: tierMonthlyRent,
       residentsCount: tierResidentsCount,
-      description: tierDescription
+      reservedCount: tierReservedCount
     })
   }
 
@@ -86,7 +84,7 @@ export function setURLState (state) {
   state.tiers.forEach((tier, index) => {
     params.set(`${index}monthlyRent`, tier.monthlyRent)
     params.set(`${index}residentsCount`, tier.residentsCount)
-    params.set(`${index}description`, tier.description)
+    params.set(`${index}reservedCount`, tier.reservedCount)
   })
 
   window.history.replaceState({}, '', `${location.pathname}?${params}`)

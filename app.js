@@ -9,6 +9,8 @@ import {
 } from './state.js'
 import NumberFormat from 'react-number-format'
 
+import pluralize from 'pluralize'
+
 import {
   Alert,
   Badge,
@@ -188,7 +190,17 @@ class Tier extends Component {
           </div>
         </div>
 
-        <small>{this.props.description}</small>
+        <small>
+          Each resident has{' '}
+          <strong>
+            {pluralize(
+              'reserved weekend bed spot',
+              this.props.reservedCount,
+              true
+            )}
+          </strong>{' '}
+          per month.
+        </small>
 
         <UpdateTierModal
           isOpen={this.state.modal}
@@ -204,7 +216,7 @@ class Tier extends Component {
 class UpdateTierModal extends Component {
   state = {
     monthlyRent: this.props.monthlyRent,
-    description: this.props.description,
+    reservedCount: this.props.reservedCount,
     residentsCount: this.props.residentsCount
   }
 
@@ -250,14 +262,19 @@ class UpdateTierModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='description'>Description</Label>
-              <Input
-                name='description'
-                type='textarea'
-                value={this.state.description}
-                onChange={event =>
-                  this.setState({ description: event.target.value })
-                }
+              <Label htmlFor='reservedCount'>
+                Number of Reserved Weekend Bed Spots
+              </Label>
+              <NumberFormat
+                name='reservedCount'
+                type='tel'
+                value={this.state.reservedCount}
+                onValueChange={({ floatValue }) => {
+                  this.setState({ reservedCount: floatValue })
+                }}
+                decimalScale={0}
+                allowNegative={false}
+                className='form-control'
               />
             </FormGroup>
           </Form>
@@ -269,7 +286,11 @@ class UpdateTierModal extends Component {
           <Button
             color='dark'
             onClick={this.update}
-            disabled={!this.state.monthlyRent || !this.state.residentsCount}
+            disabled={
+              !this.state.monthlyRent ||
+              !this.state.residentsCount ||
+              !this.state.reservedCount
+            }
           >
             Update Tier
           </Button>{' '}
@@ -282,7 +303,7 @@ class UpdateTierModal extends Component {
 class AddTierModal extends Component {
   initial = {
     monthlyRent: 100,
-    description: '',
+    reservedCount: 0,
     residentsCount: 0
   }
   state = { ...this.initial }
@@ -339,14 +360,19 @@ class AddTierModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='description'>Description</Label>
-              <Input
-                name='description'
-                type='textarea'
-                value={this.state.description}
-                onChange={event =>
-                  this.setState({ description: event.target.value })
+              <Label htmlFor='reservedCount'>
+                Number of Reserved Weekend Bed Spots
+              </Label>
+              <NumberFormat
+                name='reservedCount'
+                type='tel'
+                value={this.state.reservedCount}
+                onValueChange={({ floatValue }) =>
+                  this.setState({ reservedCount: floatValue })
                 }
+                decimalScale={0}
+                allowNegative={false}
+                className='form-control'
               />
             </FormGroup>
           </Form>
@@ -358,7 +384,11 @@ class AddTierModal extends Component {
           <Button
             color='dark'
             onClick={this.add}
-            disabled={!this.state.monthlyRent || !this.state.residentsCount}
+            disabled={
+              !this.state.monthlyRent ||
+              !this.state.residentsCount ||
+              !this.state.reservedCount
+            }
           >
             Add Tier
           </Button>{' '}
