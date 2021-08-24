@@ -12,6 +12,9 @@ function Summary (props) {
   const monthlyRent = Dinero({
     amount: dollarsToCents(props.monthlyRent || 0)
   })
+  const monthlyUtilities = Dinero({
+    amount: dollarsToCents(props.monthlyUtilities || 0)
+  })
   const monthlyIncome = props.tiers.reduce(
     (sum, tier) =>
       sum.add(
@@ -21,7 +24,9 @@ function Summary (props) {
       ),
     Dinero()
   )
-  const monthlyDelta = monthlyIncome.subtract(monthlyRent)
+  const monthlyDelta = monthlyIncome
+    .subtract(monthlyRent)
+    .subtract(monthlyUtilities)
   const requiredBedSpots = Math.ceil(
     props.tiers.reduce(
       (sum, tier) => (sum += tier.reservedCount * tier.residentsCount),

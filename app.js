@@ -52,6 +52,9 @@ class App extends Component {
   updateMonthlyRent = monthlyRent => {
     this.setState({ monthlyRent }, () => setURLState(this.state))
   }
+  updateMonthlyUtilities = monthlyUtilities => {
+    this.setState({ monthlyUtilities }, () => setURLState(this.state))
+  }
   updateBedSpots = bedSpots => {
     this.setState({ bedSpots }, () => setURLState(this.state))
   }
@@ -104,6 +107,22 @@ class App extends Component {
             />
           </FormGroup>
           <FormGroup>
+            <Label htmlFor='monthlyUtilities'>Monthly Utilities</Label>
+            <NumberFormat
+              name='monthlyUtilities'
+              type='tel'
+              value={this.state.monthlyUtilities}
+              onValueChange={({ floatValue }) => {
+                this.updateMonthlyUtilities(floatValue)
+              }}
+              decimalScale={2}
+              thousandSeparator={true}
+              prefix={'$'}
+              allowNegative={false}
+              className='form-control'
+            />
+          </FormGroup>
+          <FormGroup>
             <Label htmlFor='bedSpots'>Bed Spots</Label>
             <NumberFormat
               name='bedSpots'
@@ -120,6 +139,7 @@ class App extends Component {
           <hr />
           <Summary
             monthlyRent={this.state.monthlyRent}
+            monthlyUtilities={this.state.monthlyUtilities}
             bedSpots={this.state.bedSpots}
             tiers={this.state.tiers}
           />
