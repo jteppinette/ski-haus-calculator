@@ -28,6 +28,7 @@ function Summary (props) {
       0
     ) / 4
   )
+  const bedSpotsDelta = (props.bedSpots || 0) - requiredBedSpots
 
   return (
     <Row className='text-center'>
@@ -55,6 +56,17 @@ function Summary (props) {
         <strong>Required Bed Spots</strong>
         <br />
         {requiredBedSpots}
+        {bedSpotsDelta == 0 ? null : (
+          <span
+            className={`mb-3 ${
+              bedSpotsDelta < 0 ? 'text-danger' : 'text-success'
+            }`}
+          >
+            {' '}
+            ({bedSpotsDelta > 0 ? '+' : null}
+            {bedSpotsDelta})
+          </span>
+        )}
       </Col>
     </Row>
   )

@@ -1,5 +1,6 @@
 export const defaultState = {
   monthlyRent: 6000,
+  bedSpots: 11,
   tiers: [
     {
       monthlyRent: 400,
@@ -26,6 +27,9 @@ export function getURLState () {
   const monthlyRent = params.has('monthlyRent')
     ? parseFloat(params.get('monthlyRent'))
     : null
+  const bedSpots = params.has('bedSpots')
+    ? parseInt(params.get('bedSpots'))
+    : null
   const tiersCount = params.has('tiersCount')
     ? parseInt(params.get('tiersCount'))
     : null
@@ -33,6 +37,8 @@ export function getURLState () {
   if (
     monthlyRent === null ||
     isNaN(monthlyRent) ||
+    bedSpots === null ||
+    isNaN(bedSpots) ||
     tiersCount === null ||
     isNaN(tiersCount)
   ) {
@@ -72,6 +78,7 @@ export function getURLState () {
 
   return {
     monthlyRent,
+    bedSpots,
     tiers
   }
 }
@@ -80,6 +87,7 @@ export function setURLState (state) {
   const params = new URLSearchParams()
 
   params.set('monthlyRent', state.monthlyRent)
+  params.set('bedSpots', state.bedSpots)
   params.set('tiersCount', state.tiers.length)
   state.tiers.forEach((tier, index) => {
     params.set(`${index}monthlyRent`, tier.monthlyRent)

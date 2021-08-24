@@ -52,6 +52,9 @@ class App extends Component {
   updateMonthlyRent = monthlyRent => {
     this.setState({ monthlyRent }, () => setURLState(this.state))
   }
+  updateBedSpots = bedSpots => {
+    this.setState({ bedSpots }, () => setURLState(this.state))
+  }
   addTier = tier => {
     const tiers = [...this.state.tiers, tier]
     tiers.sort((a, b) => b.monthlyRent - a.monthlyRent)
@@ -100,9 +103,24 @@ class App extends Component {
               className='form-control'
             />
           </FormGroup>
+          <FormGroup>
+            <Label htmlFor='bedSpots'>Bed Spots</Label>
+            <NumberFormat
+              name='bedSpots'
+              type='tel'
+              value={this.state.bedSpots}
+              onValueChange={({ floatValue }) => {
+                this.updateBedSpots(floatValue)
+              }}
+              decimalScale={0}
+              allowNegative={false}
+              className='form-control'
+            />
+          </FormGroup>
           <hr />
           <Summary
             monthlyRent={this.state.monthlyRent}
+            bedSpots={this.state.bedSpots}
             tiers={this.state.tiers}
           />
           <hr />
