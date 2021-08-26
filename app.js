@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import NumberFormat from 'react-number-format'
 import {
   Alert,
@@ -14,35 +14,30 @@ import {
   NavbarBrand
 } from 'reactstrap'
 
-import {
-  getURLState,
-  setURLState,
-  clearURLState,
-  defaultState
-} from './state.js'
+import { getURLState, setURLState, defaultState } from './state.js'
 import Summary from './summary.js'
 import { Tier, AddTierModal, UpdateTierModal } from './tier.js'
 
+const urlState = getURLState()
+
 function App () {
-  const urlState = getURLState()
-
-  if (!urlState) {
-    clearURLState()
-  }
-
   const initial = urlState ? urlState : defaultState
 
   const [monthlyRent, setMonthlyRent] = useState(initial.monthlyRent)
   const [monthlyUtilities, setMonthlyUtilities] = useState(initial.monthlyRent)
   const [bedSpots, setBedSpots] = useState(initial.bedSpots)
   const [tiers, setTiers] = useState(initial.tiers)
-
   const [modal, setModal] = useState(false)
 
-  useEffect(
-    () => setURLState({ monthlyRent, monthlyUtilities, bedSpots, tiers }),
-    [monthlyRent, monthlyUtilities, bedSpots, tiers]
-  )
+  const isInitialMount = useRef(true)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      setURLState({ monthlyRent, monthlyUtilities, bedSpots, tiers })
+    }
+  }, [monthlyRent, monthlyUtilities, bedSpots, tiers])
 
   function toggleModal () {
     setModal(!modal)
