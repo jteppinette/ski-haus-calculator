@@ -24,7 +24,9 @@ function App () {
   const initial = urlState ? urlState : defaultState
 
   const [monthlyRent, setMonthlyRent] = useState(initial.monthlyRent)
-  const [monthlyUtilities, setMonthlyUtilities] = useState(initial.monthlyRent)
+  const [monthlyUtilities, setMonthlyUtilities] = useState(
+    initial.monthlyUtilities
+  )
   const [bedSpots, setBedSpots] = useState(initial.bedSpots)
   const [tiers, setTiers] = useState(initial.tiers)
   const [modal, setModal] = useState(false)
