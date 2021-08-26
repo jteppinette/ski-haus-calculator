@@ -2,7 +2,7 @@
   "name": "ski-haus-calculator",
   "version": "0.0.1",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "parcel index.html",
