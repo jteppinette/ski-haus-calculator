@@ -44,16 +44,6 @@ function App () {
   function toggleModal () {
     setModal(!modal)
   }
-
-  function updateMonthlyRent (monthlyRent) {
-    setMonthlyRent(monthlyRent)
-  }
-  function updateMonthlyUtilities (monthlyUtilities) {
-    setMonthlyUtilities(monthlyUtilities)
-  }
-  function updateBedSpots (bedSpots) {
-    setBedSpots(bedSpots)
-  }
   function addTier (tier) {
     const tmp = [...tiers, tier]
     tmp.sort((a, b) => b.monthlyRent - a.monthlyRent)
