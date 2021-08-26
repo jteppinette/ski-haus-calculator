@@ -48,6 +48,7 @@ function Tier (props) {
       </small>
 
       <UpdateTierModal
+        key={JSON.stringify(props)}
         isOpen={modal}
         toggle={toggleModal}
         update={props.update}
