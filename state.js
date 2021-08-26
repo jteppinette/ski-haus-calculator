@@ -18,8 +18,7 @@ export const defaultState = {
       residentsCount: 5,
       reservedCount: 1
     }
-  ],
-  modal: false
+  ]
 }
 
 export function getURLState () {
