@@ -17,7 +17,6 @@
 **Setup**
 
 ```sh
-$ git clone git@github.com:jteppinette/ski-haus-calculator.git && cd ski-haus-calculator
 $ direnv allow
 $ pre-commit install
 $ npm install
