@@ -16,7 +16,7 @@ import {
 
 import { getURLState, setURLState, defaultState } from './state.js'
 import Summary from './summary.js'
-import { Tier, AddTierModal, UpdateTierModal } from './tier.js'
+import { Tier, AddTierModal } from './tier.js'
 
 const urlState = getURLState()
 
