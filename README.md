@@ -37,3 +37,9 @@ $ open http://localhost:1234/
 ```sh
 $ npm run build
 ```
+
+### Analyze Bundle Size
+
+```sh
+$ npm run build -- --detailed-report
+```
