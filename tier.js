@@ -14,6 +14,8 @@ import {
   ModalHeader
 } from 'reactstrap'
 
+import Icon from './icons'
+
 function Tier (props) {
   const [modal, setModal] = useState(false)
 
@@ -34,8 +36,8 @@ function Tier (props) {
         </h5>
         <div className='d-flex justify-content-between align-items-center'>
           <Badge className='mr-3'>{props.residentsCount} Residents</Badge>
-          <i onClick={toggleModal} className='fas fa-edit ml-1'></i>
-          <i onClick={props.remove} className='fas fa-trash-alt ml-2'></i>
+          <Icon icon='edit' onClick={toggleModal} className='ml-1' />
+          <Icon icon='trash-alt' onClick={props.remove} className='ml-2' />
         </div>
       </div>
 

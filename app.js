@@ -17,6 +17,7 @@ import {
 import { getURLState, setURLState, defaultState } from './state.js'
 import Summary from './summary.js'
 import { Tier, AddTierModal } from './tier.js'
+import Icon from './icons'
 
 const urlState = getURLState()
 
@@ -143,7 +144,7 @@ function App () {
           </ListGroup>
           <CardFooter>
             <Button block onClick={toggleModal} color='dark' block>
-              <i className='fas fa-plus'></i> Add Tier
+              <Icon icon='plus' /> Add Tier
             </Button>
           </CardFooter>
         </Card>
