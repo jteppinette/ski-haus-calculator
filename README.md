@@ -9,7 +9,7 @@
 
 - [direnv](https://direnv.net)
 - [git](https://git-scm.com/)
-- [node](https://nodejs.org/en/download/)
+- [nvm](https://formulae.brew.sh/formula/nvm#default)
 - [pre-commit](https://pre-commit.com/#install)
 
 ### Getting Started
